@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - SampleMVC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body class="text-gray-800 antialiased">
+@RenderBody()
+
+
+<footer class="py-10 md:py-16 mb-20 md:mb-40 lg::mb-52">
+
+    <div class="container max-w-screen-xl mx-auto px-4">
+
+
+    </div>
+
+</footer>
+<script>
+    feather.replace()
+</script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

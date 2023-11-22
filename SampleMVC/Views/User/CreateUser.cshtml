@@ -1,0 +1,46 @@
+@model SampleMVC.Data.Dtos.UserCreationDto;
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="px-8 py-6 mx-4 mt-4 text-left bg-white rounded-2xl shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3">
+        <h3 class="text-2xl font-bold font-med text-center">Set Up Your Personal Portfolio</h3>
+
+        <form method="post" asp-action="CreateUser" asp-controller="User">
+            <div class="mt-4">
+                <div>
+                    <label class="label" for="Name">First Name</label>
+                    <input type="text" asp-for="Name" required placeholder="Enter your full names" class="input">
+                    <span asp-validation-for="Name" class="text-red-500 text-xs"></span>
+                </div>
+
+                <div class="mt-4 mb-4">
+                    <label class="label" for="Email">Email Address</label>
+                    <input type="email" required asp-for="Email" placeholder="Enter your email" class="input">
+                    <span asp-validation-for="Email" class="text-red-500 text-xs"></span>
+                </div>
+
+                <div>
+                    <label class="label" for="About">About You</label>
+                    <input type="text" required asp-for="About" placeholder="Enter your full names" class="input">
+                    <span asp-validation-for="About" class="text-red-500 text-xs"></span>
+                </div>
+
+                <div>
+                    <label class="label" for="Image">Image</label>
+                    <input type="file" asp-for="Image" class="input">
+                    <span asp-validation-for="Image" class="text-red-500 text-xs"></span>
+                </div>
+
+                <div>
+                    <label class="label" for="Resume">Resume</label>
+                    <input type="file" asp-for="Resume" class="input">
+                    <span asp-validation-for="Resume" class="text-red-500 text-xs"></span>
+                </div>
+
+
+                <div class="flex mt-4">
+                    <button type="submit" class="w-full button">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
