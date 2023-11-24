@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SampleMVC.Data.Dtos;
 using SampleMVC.Data.Repositories;
+using SampleMVC.Models;
 using SampleMVC.Models.Entities;
 
 namespace SampleMVC.Controllers;
 
-[Route("auth")]
+[Route("")]
 public class UserController: Controller
 {
     private readonly IUserRepository _userRepository;
@@ -15,6 +16,24 @@ public class UserController: Controller
         _userRepository = userRepository;
     }
 
+    [HttpGet("{userId}")]
+    public async Task<IActionResult> GetUserPortfolio(string userId)
+    {
+        var user = await _userRepository.GetUserWithSkillsById(userId);
+
+        var userVm = new UserVM
+        {
+            Name = user.Name,
+            Image = user.Image,
+            Description = user.About,
+            Skills = user.Skills,
+        };
+
+        ViewBag.UserId = userId;
+        
+        return View(userVm);
+    }
+
     [HttpGet("register")]
     public IActionResult CreateUser()
     {
@@ -22,18 +41,18 @@ public class UserController: Controller
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> CreateUser(UserCreationDto userDto)
+    public async Task<IActionResult> CreateUser([FromForm] UserCreationDto userDto)
     {
         var user = new User
         {
             Name = userDto.Name,
             Email = userDto.Email,
             About = userDto.About,
-            CreatedAt = DateTime.Now
+            CreatedAt = DateTime.Now,
         };
 
         var response = await _userRepository.Add(user);
 
-        return RedirectToAction("User", "Home", new {userId = user.Id});
+        return RedirectToAction("GetUserPortfolio", new {userId = user.Id});
     }
 }

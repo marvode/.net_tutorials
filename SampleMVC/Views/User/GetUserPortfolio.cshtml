@@ -8,9 +8,11 @@
     <div class="container max-w-screen-xl mx-auto px-4">
 
         <nav class="flex items-center justify-between mb-40">
-            <img src="/assets/image/navbar-logo.png" alt="Logo">
+            <a href="/">
+                <img src="/assets/image/navbar-logo.png" alt="Logo">
+            </a>
 
-            <button class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500">Get my CV</button>
+            <a asp-controller="Skill" asp-action="AddSkill" asp-route-userId="@ViewBag.UserId" class="px-7 py-3 md:px-9 md:py-4 bg-white font-medium md:font-semibold text-gray-700 text-md rounded-md hover:bg-gray-700 hover:text-white transition ease-linear duration-500">Add Skill</a>
         </nav>
 
         <div class="text-center">
@@ -34,32 +36,20 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach (var skill in @Model.Skills)
             {
-                <div class="bg-gray-50 px-8 py-10 rounded-md">
+                <a asp-controller="Skill" asp-action="Edit" asp-route-skillId="@skill.Id" class="block relative bg-gray-50 px-8 py-10 rounded-md">
                     <div class="w-20 py-6 flex justify-center bg-gray-100 rounded-md mb-4">
                         <i data-feather="activity"></i>
                     </div>
+                    
+                    <form method="post" asp-controller="Skill" asp-action="Delete" asp-route-skillId="@skill.Id">
+                        <button type="submit" class="absolute z-10 top-12 right-5 button-secondary hover:bg-red-700 bg-red-600 text-gray-100">Delete</button>
+                    </form>
 
                     <h4 class="font-medium text-gray-700 text-lg mb-4">@skill.Title</h4>
 
-                    <p class="font-normal text-gray-500 text-md">@skill.Description</p>
-                </div>
+                    <p class="font-normal text-gray-500 text-md">@skill.Text </p>
+                </a>
             }
-        </div>
-
-    </div>
-
-</section>
-
-<section class="py-10 md:py-16">
-
-    <div class="container max-w-screen-xl mx-auto px-4">
-
-        <div class="flex flex-col lg:flex-row justify-between">
-            <div class="mb-10 lg:mb-0">
-                <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">Portfolio</h1>
-
-                <p class="font-normal text-gray-500 text-xs md:text-base">I have brought here my biggest and favorite works <br> as a professional.</p>
-            </div>
         </div>
 
     </div>
